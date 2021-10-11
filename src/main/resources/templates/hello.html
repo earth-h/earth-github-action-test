@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!-- 순수하게 hello.html을 랜더링하면 안녕하세요. 손님이 뜹니다. 반면, springboot로 띄우면 controller에 의해 담아진 data값이 뜹니다. -->
+<p th:text="'안녕! ' + ${data}">안녕하세요. 손님</p>
+</body>
+</html>
