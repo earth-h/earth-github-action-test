@@ -3,4 +3,3 @@ branches:
   - label: '*'
     prefix: feature/
 autoCloseIssue: true
-commentMessage: 'Hello! Branch ${branchName} created for issue: ${issue.title} :)'
