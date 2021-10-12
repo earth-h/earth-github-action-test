@@ -1,4 +1,4 @@
-name: Deploy to dev EB
+name: earth-github-action-test CD
 
 on:
   push:
