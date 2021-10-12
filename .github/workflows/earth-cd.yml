@@ -46,9 +46,10 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application-name: earth-github-action-test
+          application_name: earth-github-action-test
           environment_name: dev-earth-github-action-test
-          version_label: github-action-${{steps.current-time.outputs.formattedTime}}
+          #version_label: github-action-${{steps.current-time.outputs.formattedTime}}
+          version_label: Sample Application-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
           wait_for_environment_recovery: 180
