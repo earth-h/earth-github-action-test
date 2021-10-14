@@ -29,7 +29,7 @@ jobs:
         uses: 1466587594/get-current-time@v2
         id: current-time
         with:
-          format: YYYY-MM-DDTHH-mm-ss
+          format: YYYYMMDD_HH-mm-ss
           utcOffset: "+09:00"
 
       - name: Generate deployment package
@@ -48,7 +48,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: earth-github-action-test
           environment_name: dev-earth-github-action-test
-          #version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           version_label: Github Action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
