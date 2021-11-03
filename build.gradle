@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.10'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
 group = 'jpabook'
@@ -41,4 +42,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+if(project.hasProperty('ebprod')) {
+	apply from: rootProject.file('profile_ebprod.gradle');
 }

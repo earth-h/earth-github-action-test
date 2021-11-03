@@ -1,0 +1,17 @@
+jib {
+	from {
+		image = "adoptopenjdk/openjdk11"
+	}
+	to {
+		// image 이름
+		image = "${awsEcrRepository}"
+		tags = ["latest", "${project.name}-${project.version}".toString()]
+	}
+	container {
+		creationTime = "USE_CURRENT_TIMESTAMP"
+		// Set JVM options
+		jvmFlags = ['-Dspring.profiles.active=ebprod', '-XX:+UseContainerSupport', '-Dserver.port=8080', '-Dfile.encoding=UTF-8']
+		// 컨테이너가 외부로 노출할 포트
+		ports = ['8080']
+	}
+}
