@@ -36,5 +36,5 @@ jobs:
         shell: bash
 
       - name: Build with Gradle
-        run: ./gradlew -PawsEcrRepository=${{ AWS_ECR_IMAGE_URL }} clean jib -x test
+        run: ./gradlew -Pprofile=ebprod -PawsEcrRepository=${{ AWS_ECR_IMAGE_URL }} clean jib -x test
         shell: bash
