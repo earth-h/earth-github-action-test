@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "${{ secrets.AWS_ECR_IMAGE_URL }}",
+    "Name": "755817737425.dkr.ecr.ap-northeast-2.amazonaws.com/earth-demo:latest",
     "Update": "true"
   },
   "Ports": [
