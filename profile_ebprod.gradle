@@ -3,8 +3,6 @@ jib {
 		image = "adoptopenjdk/openjdk11"
 	}
 	to {
-		// image 이름
-		image = "${awsEcrRepository}"
 		tags = ["latest", "${project.name}-${project.version}".toString()]
 	}
 	container {

@@ -38,3 +38,25 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew -Pprofile=ebprod -Djib.to.image=${{ secrets.AWS_ECR_IMAGE_URL }} clean jib -x test
         shell: bash
+
+      - name: Generate deployment package
+        run: |
+          mkdir -p deploy
+#          cp build/libs/*.jar deploy/application.jar
+#          cp Procfile deploy/Procfile
+#          cp -r .ebextensions deploy/.ebextensions
+#          cp -r .platform deploy/.platform
+          cp Dockerrun.aws.json deploy/Dockerrun.aws.json
+          cd deploy && zip -r deploy.zip .
+
+      - name: Beanstalk Deploy
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: earth-github-action-test
+          environment_name: earthProdDocker
+          version_label: Github Action-${{steps.current-time.outputs.formattedTime}}
+          region: ap-northeast-2
+          deployment_package: deploy/deploy.zip
+          wait_for_environment_recovery: 180

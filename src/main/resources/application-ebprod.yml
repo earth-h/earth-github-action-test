@@ -1,0 +1,9 @@
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://${rds.hostname}:${rds.port}/${rds.dbname}
+#    username: ${rds.username}
+#    password: ${rds.password}
+#    driver-class-name: ${rds.driver}
+aws:
+  ecr:
+    image: ${ecr.image}
