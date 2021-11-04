@@ -44,6 +44,6 @@ test {
 	useJUnitPlatform()
 }
 
-if(project.hasProperty('ebprod')) {
-	apply from: rootProject.file('profile_ebprod.gradle');
-}
+//if(project.hasProperty('ebprod')) {
+//	apply from: rootProject.file('profile_ebprod.gradle');
+//}
