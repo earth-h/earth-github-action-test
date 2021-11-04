@@ -56,6 +56,7 @@ jobs:
           application_name: earth-github-action-test
           environment_name: earthProdDocker
           version_label: earth-docker-${{steps.current-time.outputs.formattedTime}}
+          use_existing_version_if_available: false
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
           wait_for_environment_recovery: 180
