@@ -20,6 +20,14 @@ jobs:
         with:
           java-version: 11
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+        shell: bash
+
+      - name: Build with Gradle
+        run: ./gradlew clean build
+        shell: bash
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -31,24 +39,24 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-#      - name: Build, tag, and push image to Amazon ECR
-#        id: build-image
-#        env:
-#          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#          ECR_REPOSITORY: earth-demo
-#          IMAGE_TAG: latest
-#        run: |
-#          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-#          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-#          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: earth-demo
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-        shell: bash
-
-      - name: Build with Gradle
-        run: ./gradlew -Pprofile=ebprod -Djib.to.image=${{ secrets.AWS_ECR_IMAGE_URL }} clean jib -x test
-        shell: bash
+#      - name: Grant execute permission for gradlew
+#        run: chmod +x ./gradlew
+#        shell: bash
+#
+#      - name: Build with Gradle
+#        run: ./gradlew -Pprofile=ebprod -Djib.to.image=${{ secrets.AWS_ECR_IMAGE_URL }} clean jib -x test
+#        shell: bash
 
       - name: Get current time
         uses: 1466587594/get-current-time@v2
