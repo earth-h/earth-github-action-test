@@ -71,9 +71,9 @@ jobs:
           cp Dockerfile deploy/Dockerfile
           cp Procfile deploy/Procfile
           cp -r .ebextensions deploy/.ebextensions
+          cp -r .platform deploy/.platform
           cp Dockerrun.aws.json deploy/Dockerrun.aws.json
           cd deploy && zip -r deploy.zip .
-#          cp -r .platform deploy/.platform
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v14
