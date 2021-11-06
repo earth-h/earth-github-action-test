@@ -20,3 +20,6 @@ logging.level:
 # 로거를 통해 로그 남기려면 org.hibernate.SQL을 사용합니다.
 #  org.hibernate.type: trace
 # trace로 hibernate type을 지정함으로써 로그에 SQL 실행 파라미터를 표시할 수 있습니다.
+
+server:
+  port: 5000
