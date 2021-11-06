@@ -57,7 +57,6 @@ jobs:
 #      - name: Build with Gradle
 #        run: ./gradlew -Pprofile=ebprod -Djib.to.image=${{ secrets.AWS_ECR_IMAGE_URL }} clean jib -x test
 #        shell: bash
-
       - name: Get current time
         uses: 1466587594/get-current-time@v2
         id: current-time
