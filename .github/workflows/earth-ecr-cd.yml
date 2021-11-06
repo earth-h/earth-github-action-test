@@ -68,11 +68,12 @@ jobs:
       - name: Generate deployment package
         run: |
           mkdir -p deploy
+          cp Dockerfile deploy/Dockerfile
           cp Procfile deploy/Procfile
           cp -r .ebextensions deploy/.ebextensions
-          cp -r .platform deploy/.platform
           cp Dockerrun.aws.json deploy/Dockerrun.aws.json
           cd deploy && zip -r deploy.zip .
+#          cp -r .platform deploy/.platform
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v14
@@ -84,4 +85,4 @@ jobs:
           version_label: earth-docker-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
-          wait_for_environment_recovery: 480
+          wait_for_environment_recovery: 200
