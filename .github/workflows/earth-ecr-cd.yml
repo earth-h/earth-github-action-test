@@ -50,13 +50,6 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-#      - name: Grant execute permission for gradlew
-#        run: chmod +x ./gradlew
-#        shell: bash
-#
-#      - name: Build with Gradle
-#        run: ./gradlew -Pprofile=ebprod -Djib.to.image=${{ secrets.AWS_ECR_IMAGE_URL }} clean jib -x test
-#        shell: bash
       - name: Get current time
         uses: 1466587594/get-current-time@v2
         id: current-time
@@ -71,7 +64,6 @@ jobs:
           cp -r .ebextensions deploy/.ebextensions
           cp Dockerrun.aws.json deploy/Dockerrun.aws.json
           cd deploy && zip -r deploy.zip .
-#          cp -r .platform deploy/.platform
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v14
@@ -79,7 +71,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: earth-github-action-test
-          environment_name: earthProdDocker
+          environment_name: earthDocker
           version_label: earth-docker-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
