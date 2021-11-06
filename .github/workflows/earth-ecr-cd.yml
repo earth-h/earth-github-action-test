@@ -68,7 +68,6 @@ jobs:
       - name: Generate deployment package
         run: |
           mkdir -p deploy
-          cp Dockerfile deploy/Dockerfile
           cp Procfile deploy/Procfile
           cp -r .ebextensions deploy/.ebextensions
           cp -r .platform deploy/.platform
